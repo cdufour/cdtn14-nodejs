@@ -6,4 +6,4 @@ sous forme d'un formulaire html (cf sample.html) pour:
 - un étudiant (exemple: Chris)
 - un entier (exemple: 5)
 
-Ces deux paramètres seront fournis en options de ligne de commandes
+Ces deux paramètres seront fournis en options de ligne de commande
