@@ -1,0 +1,9 @@
+*** TP Multables ***
+
+Créer un programme nodejs en ligne de commande permettant
+de générer une table de multiplication
+sous forme d'un formulaire html (cf sample.html) pour:
+- un étudiant (exemple: Chris)
+- un entier (exemple: 5)
+
+Ces deux paramètres seront fournis en options de ligne de commandes
