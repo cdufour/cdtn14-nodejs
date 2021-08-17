@@ -1,0 +1,13 @@
+extends base
+
+block content
+  h2= message
+  form(action="/login" method="post", class="form")
+    div
+      input(name="email")
+    div
+      input(type="password" name="password")
+    button Se connecter
+
+  if active
+    div Je suis un dev actif !
