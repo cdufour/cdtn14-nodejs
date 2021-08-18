@@ -19,14 +19,14 @@ app.use(express.json());
 //app.post('/team') // CORRECT !
 
 // Entité: Artist
-app.get('/artist', authenticate, (req, res) => {
+app.get('/artist', (req, res) => {
 
   knex.select('Name').from('artists').then((artists) => {
     res.json(artists);
   })
 })
 
-app.get('/artist/:id', authenticate, async (req, res) => {
+app.get('/artist/:id', async (req, res) => {
   
   // knex
   //   .select('*')
@@ -70,7 +70,8 @@ app.patch('/artist/:id', async (req, res) => {
   res.json({result});
 })
 
-app.delete('/artist/:id', async (req,res) => {
+// route protégée par le middleware authenticate
+app.delete('/artist/:id', authenticate, async (req,res) => {
 
   const {id} = req.params;
 
@@ -99,8 +100,7 @@ app.post('/login', async (req, res) => {
 
   const {email,password} = req.body;
 
-  const result = await knex('users')
-    .where({email}).select('id', 'password');
+  const result = await knex('users').where({email}).select('id', 'password');
 
   if (result.length > 0) {
 
@@ -130,6 +130,23 @@ app.post('/login', async (req, res) => {
   } else {
     res.json({login: false});
   }
+
+})
+
+
+// Exercice - correction
+app.get('/artist/:id/albums', async (req, res) => {
+
+  const result = await knex('albums').where({ArtistId: req.params.id}).select('Title');
+  res.json({result});
+
+})
+
+app.post('/logout', authenticate, async (req, res) => {
+
+  const token = req.get('X-JWT');
+  const result = await knex('users').where({token}).update({token: null});
+  res.json({result});
 
 })
 
