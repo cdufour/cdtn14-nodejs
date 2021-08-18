@@ -1,0 +1,5 @@
+*** exercice ***
+
+Ajouter à l'application node-api:
+- une route permettant d'obtenir la liste des albumes par rapport à un artiste
+- une route permettant de se déconnecter (logout)
